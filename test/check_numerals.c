@@ -25,7 +25,7 @@ END_TEST
 START_TEST(char_i_translates_to_value_1) {
     char i[] = "i";
     int expected = 1;
-    ck_assert_int_eq(charToNumericValue(i), expected);
+    ck_assert_int_eq(charToDigit(i), expected);
 }
 END_TEST
 
