@@ -1,4 +1,6 @@
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "numerals.h"
 
 void add(char *first, char *second, char *buf) {
@@ -35,6 +37,7 @@ int charToDigit(char *c) {
         case 'm':
             return 1000;
         default:
-            return 0;
+            printf("The letter %s is not a valid Roman numeral!\n", c);
+            exit(1);
     }
 }

@@ -54,6 +54,13 @@ START_TEST(single_char_translates_to_numeric_value) {
 }
 END_TEST
 
+START_TEST(invalid_char_causes_program_exit_with_status_1) {
+    char numeral[] = "z";
+    int expected = 0;
+    ck_assert_int_eq(charToDigit(numeral), expected);
+}
+END_TEST
+
 START_TEST(numeral_ii_translates_to_value_2) {
     char ii[] = "ii";
     char *ptr = ii;
@@ -71,6 +78,7 @@ Suite * numerals_suite(void) {
     tcase_add_test(tc_basic, add_i_and_i_returns_ii);
     tcase_add_test(tc_basic, add_i_and_ii_returns_iii);
     tcase_add_test(tc_basic, single_char_translates_to_numeric_value);
+    tcase_add_exit_test(tc_basic, invalid_char_causes_program_exit_with_status_1, 1);
     tcase_add_test(tc_basic, numeral_ii_translates_to_value_2);
     suite_add_tcase(s, tc_basic);
 
