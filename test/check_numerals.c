@@ -22,10 +22,35 @@ START_TEST(add_i_and_ii_returns_iii) {
 }
 END_TEST
 
-START_TEST(char_i_translates_to_value_1) {
-    char i[] = "i";
+START_TEST(single_char_translates_to_numeric_value) {
+    char numeral[] = "i";
     int expected = 1;
-    ck_assert_int_eq(charToDigit(i), expected);
+    ck_assert_int_eq(charToDigit(numeral), expected);
+
+    strcpy(numeral, "v");
+    expected = 5;
+    ck_assert_int_eq(charToDigit(numeral), expected);
+
+    strcpy(numeral, "x");
+    expected = 10;
+    ck_assert_int_eq(charToDigit(numeral), expected);
+
+    strcpy(numeral, "l");
+    expected = 50;
+    ck_assert_int_eq(charToDigit(numeral), expected);
+
+    strcpy(numeral, "c");
+    expected = 100;
+    ck_assert_int_eq(charToDigit(numeral), expected);
+
+    strcpy(numeral, "d");
+    expected = 500;
+    ck_assert_int_eq(charToDigit(numeral), expected);
+
+    strcpy(numeral, "m");
+    expected = 1000;
+    ck_assert_int_eq(charToDigit(numeral), expected);
+
 }
 END_TEST
 
@@ -45,7 +70,7 @@ Suite * numerals_suite(void) {
     tc_basic = tcase_create("basic");
     tcase_add_test(tc_basic, add_i_and_i_returns_ii);
     tcase_add_test(tc_basic, add_i_and_ii_returns_iii);
-    tcase_add_test(tc_basic, char_i_translates_to_value_1);
+    tcase_add_test(tc_basic, single_char_translates_to_numeric_value);
     tcase_add_test(tc_basic, numeral_ii_translates_to_value_2);
     suite_add_tcase(s, tc_basic);
 
