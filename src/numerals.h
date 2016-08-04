@@ -2,6 +2,7 @@
 #define NUMERALS_H
 
 void add(char *first, char *second, char *str);
-int charToValue(char *c);
+int charToNumericValue(char *c);
+int numeralToNumericValue(char *str);
 
 #endif

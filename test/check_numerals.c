@@ -2,7 +2,7 @@
 #include <check.h>
 #include "../src/numerals.h"
 
-START_TEST(test_add_i_and_i_returns_ii) {
+START_TEST(add_i_and_i_returns_ii) {
     char first[] = "i";
     char second[] = "i";
     char expected[] = "ii";
@@ -12,7 +12,7 @@ START_TEST(test_add_i_and_i_returns_ii) {
 }
 END_TEST
 
-START_TEST(test_add_i_and_ii_returns_iii) {
+START_TEST(add_i_and_ii_returns_iii) {
     char first[] = "i";
     char second[] = "ii";
     char expected[] = "iii";
@@ -25,7 +25,15 @@ END_TEST
 START_TEST(char_i_translates_to_value_1) {
     char i[] = "i";
     int expected = 1;
-    ck_assert_int_eq(charToValue(i), expected);
+    ck_assert_int_eq(charToNumericValue(i), expected);
+}
+END_TEST
+
+START_TEST(numeral_ii_translates_to_value_2) {
+    char ii[] = "ii";
+    char *ptr = ii;
+    int expected = 2;
+    ck_assert_int_eq(numeralToNumericValue(ptr), expected);
 }
 END_TEST
 
@@ -35,9 +43,10 @@ Suite * numerals_suite(void) {
 
     s = suite_create("numerals");
     tc_basic = tcase_create("basic");
-    tcase_add_test(tc_basic, test_add_i_and_i_returns_ii);
-    tcase_add_test(tc_basic, test_add_i_and_ii_returns_iii);
+    tcase_add_test(tc_basic, add_i_and_i_returns_ii);
+    tcase_add_test(tc_basic, add_i_and_ii_returns_iii);
     tcase_add_test(tc_basic, char_i_translates_to_value_1);
+    tcase_add_test(tc_basic, numeral_ii_translates_to_value_2);
     suite_add_tcase(s, tc_basic);
 
     return s;
