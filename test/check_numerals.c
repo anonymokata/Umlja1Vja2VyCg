@@ -12,6 +12,16 @@ START_TEST(test_add_i_and_i_returns_ii) {
 }
 END_TEST
 
+START_TEST(test_add_i_and_ii_returns_iii) {
+    char first[] = "i";
+    char second[] = "ii";
+    char expected[] = "iii";
+    char result[sizeof(expected)];
+    add(first, second, result);
+	ck_assert_str_eq(result, expected);
+}
+END_TEST
+
 Suite * numerals_suite(void) {
     Suite *s;
     TCase *tc_basic;
@@ -19,6 +29,7 @@ Suite * numerals_suite(void) {
     s = suite_create("numerals");
     tc_basic = tcase_create("basic");
     tcase_add_test(tc_basic, test_add_i_and_i_returns_ii);
+    tcase_add_test(tc_basic, test_add_i_and_ii_returns_iii);
     suite_add_tcase(s, tc_basic);
 
     return s;
