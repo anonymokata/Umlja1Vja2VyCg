@@ -23,34 +23,12 @@ START_TEST(add_i_and_ii_returns_iii) {
 END_TEST
 
 START_TEST(single_char_translates_to_numeric_value) {
-    char numeral[] = "i";
-    int expected = 1;
-    ck_assert_int_eq(charToDigit(numeral), expected);
-
-    strcpy(numeral, "v");
-    expected = 5;
-    ck_assert_int_eq(charToDigit(numeral), expected);
-
-    strcpy(numeral, "x");
-    expected = 10;
-    ck_assert_int_eq(charToDigit(numeral), expected);
-
-    strcpy(numeral, "l");
-    expected = 50;
-    ck_assert_int_eq(charToDigit(numeral), expected);
-
-    strcpy(numeral, "c");
-    expected = 100;
-    ck_assert_int_eq(charToDigit(numeral), expected);
-
-    strcpy(numeral, "d");
-    expected = 500;
-    ck_assert_int_eq(charToDigit(numeral), expected);
-
-    strcpy(numeral, "m");
-    expected = 1000;
-    ck_assert_int_eq(charToDigit(numeral), expected);
-
+    char numerals[] = "ivxlcdm";
+    int expected[] = { 1, 5, 10, 50, 100, 500, 1000 };
+    int i;
+    for (i = 0; i < strlen(numerals); i++) {
+        ck_assert_int_eq(charToDigit(&numerals[i]), expected[i]);
+    }
 }
 END_TEST
 
