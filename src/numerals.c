@@ -18,7 +18,7 @@ int numeralToNumericValue(char *numeral) {
 
     for (i = len; i > 0; i--) {
         memcpy(thisChar, numeralPtr--, sizeof(int));
-        thisVal = charToDigit(thisChar);
+        thisVal = charToNumericValue(thisChar);
         if (thisVal < prevVal) {
             totalForNumeral -= thisVal;
         }
@@ -30,7 +30,7 @@ int numeralToNumericValue(char *numeral) {
     return totalForNumeral;
 }
 
-int charToDigit(char *c) {
+int charToNumericValue(char *c) {
     switch(*c) {
         case 'i':
             return 1;

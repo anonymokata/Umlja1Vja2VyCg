@@ -27,7 +27,7 @@ START_TEST(single_char_translates_to_numeric_value) {
     int expected[] = { 1, 5, 10, 50, 100, 500, 1000 };
     int i;
     for (i = 0; i < strlen(numerals); i++) {
-        ck_assert_int_eq(charToDigit(&numerals[i]), expected[i]);
+        ck_assert_int_eq(charToNumericValue(&numerals[i]), expected[i]);
     }
 }
 END_TEST
@@ -35,7 +35,7 @@ END_TEST
 START_TEST(invalid_char_causes_program_exit_with_status_1) {
     char numeral[] = "z";
     int expected = 0;
-    ck_assert_int_eq(charToDigit(numeral), expected);
+    ck_assert_int_eq(charToNumericValue(numeral), expected);
 }
 END_TEST
 
