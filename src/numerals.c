@@ -9,13 +9,23 @@ void add(char *first, char *second, char *buf) {
 }
 
 int numeralToNumericValue(char *numeral) {
-    int i;
-    int len = strlen(numeral);
+    int i, len = strlen(numeral);
     int totalForNumeral = 0;
-    for (i = len - 1; i >= 0; i--) {
-        char *c = numeral;
-        int valueForNumeral = charToDigit(c);
-        totalForNumeral += valueForNumeral;
+    char thisChar[] = " ";
+    char *numeralPtr = numeral + len -1;
+    int thisVal;
+    int prevVal = 0;
+
+    for (i = len; i > 0; i--) {
+        memcpy(thisChar, numeralPtr--, sizeof(int));
+        thisVal = charToDigit(thisChar);
+        if (thisVal < prevVal) {
+            totalForNumeral -= thisVal;
+        }
+        else {
+            totalForNumeral += thisVal;
+        }
+        prevVal = thisVal;
     }
     return totalForNumeral;
 }
