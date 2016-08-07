@@ -27,7 +27,7 @@ START_TEST(single_char_translates_to_numeric_value) {
     int expected[] = { 1, 5, 10, 50, 100, 500, 1000 };
     int i;
     for (i = 0; i < strlen(numerals); i++) {
-        ck_assert_int_eq(charToNumericValue(&numerals[i]), expected[i]);
+        ck_assert_int_eq(charToInteger(&numerals[i]), expected[i]);
     }
 }
 END_TEST
@@ -35,92 +35,91 @@ END_TEST
 START_TEST(invalid_char_causes_program_exit_with_status_1) {
     char numeral[] = "z";
     int expected = 0;
-    ck_assert_int_eq(charToNumericValue(numeral), expected);
+    ck_assert_int_eq(charToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_ii_translates_to_value_2) {
-    char ii[] = "ii";
-    char *ptr = ii;
+    char numeral[] = "ii";
     int expected = 2;
-    ck_assert_int_eq(numeralToNumericValue(ptr), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_iii_translates_to_value_3) {
     char numeral[] = "iii";
     int expected = 3;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_iv_translates_to_value_4) {
     char numeral[] = "iv";
     int expected = 4;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_vi_translates_to_value_6) {
     char numeral[] = "vi";
     int expected = 6;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_vii_translates_to_value_7) {
     char numeral[] = "vii";
     int expected = 7;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_viii_translates_to_value_8) {
     char numeral[] = "viii";
     int expected = 8;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_ix_translates_to_value_9) {
     char numeral[] = "ix";
     int expected = 9;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_xl_translates_to_value_40) {
     char numeral[] = "xl";
     int expected = 40;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_mcmxcii_translates_to_value_1992) {
     char numeral[] = "mcmxcii";
     int expected = 1992;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_mmxvi_translates_to_value_2016) {
     char numeral[] = "mmxvi";
     int expected = 2016;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_mmdxxv_translates_to_value_2525) {
     char numeral[] = "mmdxxv";
     int expected = 2525;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
 START_TEST(numeral_mmmcmxcix_translates_to_value_3999) {
     char numeral[] = "mmmcmxcix";
     int expected = 3999;
-    ck_assert_int_eq(numeralToNumericValue(numeral), expected);
+    ck_assert_int_eq(numeralToInteger(numeral), expected);
 }
 END_TEST
 
@@ -130,7 +129,7 @@ START_TEST(number_2_translates_to_numeral_ii) {
     size_t expectedSize = sizeof expected;
     char result[expectedSize];
     memset(result, 0, expectedSize);
-    numericValueToNumeral(number, result);
+    integerToNumeral(number, result);
     ck_assert_str_eq(result, expected);
 }
 END_TEST
@@ -141,7 +140,7 @@ START_TEST(number_3_translates_to_numeral_iii) {
     size_t expectedSize = sizeof expected;
     char result[expectedSize];
     memset(result, 0, expectedSize);
-    numericValueToNumeral(number, result);
+    integerToNumeral(number, result);
     ck_assert_str_eq(result, expected);
 }
 END_TEST
@@ -152,7 +151,7 @@ START_TEST(number_4_translates_to_numeral_iv) {
     size_t expectedSize = sizeof expected;
     char result[expectedSize];
     memset(result, 0, expectedSize);
-    numericValueToNumeral(number, result);
+    integerToNumeral(number, result);
     ck_assert_str_eq(result, expected);
 }
 END_TEST
@@ -163,7 +162,7 @@ START_TEST(number_9_translates_to_numeral_ix) {
     size_t expectedSize = sizeof expected;
     char result[expectedSize];
     memset(result, 0, expectedSize);
-    numericValueToNumeral(number, result);
+    integerToNumeral(number, result);
     ck_assert_str_eq(result, expected);
 }
 END_TEST
@@ -174,7 +173,7 @@ START_TEST(number_40_translates_to_numeral_xl) {
     size_t expectedSize = sizeof expected;
     char result[expectedSize];
     memset(result, 0, expectedSize);
-    numericValueToNumeral(number, result);
+    integerToNumeral(number, result);
     ck_assert_str_eq(result, expected);
 }
 END_TEST
@@ -185,7 +184,7 @@ START_TEST(number_90_translates_to_numeral_xc) {
     size_t expectedSize = sizeof expected;
     char result[expectedSize];
     memset(result, 0, expectedSize);
-    numericValueToNumeral(number, result);
+    integerToNumeral(number, result);
     ck_assert_str_eq(result, expected);
 }
 END_TEST
@@ -196,7 +195,7 @@ START_TEST(number_400_translates_to_numeral_cd) {
     size_t expectedSize = sizeof expected;
     char result[expectedSize];
     memset(result, 0, expectedSize);
-    numericValueToNumeral(number, result);
+    integerToNumeral(number, result);
     ck_assert_str_eq(result, expected);
 }
 END_TEST
@@ -207,7 +206,7 @@ START_TEST(number_900_translates_to_numeral_cm) {
     size_t expectedSize = sizeof expected;
     char result[expectedSize];
     memset(result, 0, expectedSize);
-    numericValueToNumeral(number, result);
+    integerToNumeral(number, result);
     ck_assert_str_eq(result, expected);
 }
 END_TEST

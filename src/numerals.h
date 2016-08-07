@@ -2,8 +2,8 @@
 #define NUMERALS_H
 
 void add(char *first, char *second, char *buf);
-int numeralToNumericValue(char *numeral);
-void numericValueToNumeral(int number, char *buf);
-int charToNumericValue(char *c);
+int numeralToInteger(char *numeral);
+void integerToNumeral(int number, char *buf);
+int charToInteger(char *c);
 
 #endif

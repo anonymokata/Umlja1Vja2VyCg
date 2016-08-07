@@ -8,7 +8,7 @@ void add(char *first, char *second, char *buf) {
     strcat(buf, second);
 }
 
-int numeralToNumericValue(char *numeral) {
+int numeralToInteger(char *numeral) {
     int i, len = strlen(numeral);
     int totalForNumeral = 0;
     char thisChar[] = " ";
@@ -18,7 +18,7 @@ int numeralToNumericValue(char *numeral) {
 
     for (i = len; i > 0; i--) {
         memcpy(thisChar, numeralPtr--, sizeof(int));
-        thisVal = charToNumericValue(thisChar);
+        thisVal = charToInteger(thisChar);
         if (thisVal < prevVal) {
             totalForNumeral -= thisVal;
         }
@@ -30,7 +30,7 @@ int numeralToNumericValue(char *numeral) {
     return totalForNumeral;
 }
 
-void numericValueToNumeral(int number, char *buf) {
+void integerToNumeral(int number, char *buf) {
     char numerals[13][3] = { "m", "cm", "d", "cd", "c", "xc", "l", "xl", "x", "ix", "v", "iv", "i" };
     char *numeralsPtr = numerals[0];
     char numeral[3];
@@ -38,18 +38,18 @@ void numericValueToNumeral(int number, char *buf) {
     numeralsPtr += 3;
 
     while (number > 0) {
-        while (number < numeralToNumericValue(numeral)) {
+        while (number < numeralToInteger(numeral)) {
             strcpy(numeral, numeralsPtr);
             numeralsPtr += 3;
         }
-        while (number >= numeralToNumericValue(numeral)) {
+        while (number >= numeralToInteger(numeral)) {
             strcat(buf, numeral);
-            number -= numeralToNumericValue(numeral);
+            number -= numeralToInteger(numeral);
         }
     }
 }
 
-int charToNumericValue(char *c) {
+int charToInteger(char *c) {
     switch(*c) {
         case 'i':
             return 1;
