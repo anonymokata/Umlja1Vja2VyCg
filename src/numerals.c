@@ -30,6 +30,25 @@ int numeralToNumericValue(char *numeral) {
     return totalForNumeral;
 }
 
+void numericValueToNumeral(int number, char *buf) {
+    char numerals[13][3] = { "m", "cm", "d", "cd", "c", "xc", "l", "xl", "x", "ix", "v", "iv", "i" };
+    char *numeralsPtr = numerals[0];
+    char numeral[3];
+    strcpy(numeral, numeralsPtr);
+    numeralsPtr += 3;
+
+    while (number > 0) {
+        while (number < numeralToNumericValue(numeral)) {
+            strcpy(numeral, numeralsPtr);
+            numeralsPtr += 3;
+        }
+        while (number >= numeralToNumericValue(numeral)) {
+            strcat(buf, numeral);
+            number -= numeralToNumericValue(numeral);
+        }
+    }
+}
+
 int charToNumericValue(char *c) {
     switch(*c) {
         case 'i':

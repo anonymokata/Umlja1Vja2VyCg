@@ -124,6 +124,94 @@ START_TEST(numeral_mmmcmxcix_translates_to_value_3999) {
 }
 END_TEST
 
+START_TEST(number_2_translates_to_numeral_ii) {
+    int number = 2;
+    char expected[] = "ii";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    numericValueToNumeral(number, result);
+    ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(number_3_translates_to_numeral_iii) {
+    int number = 3;
+    char expected[] = "iii";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    numericValueToNumeral(number, result);
+    ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(number_4_translates_to_numeral_iv) {
+    int number = 4;
+    char expected[] = "iv";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    numericValueToNumeral(number, result);
+    ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(number_9_translates_to_numeral_ix) {
+    int number = 9;
+    char expected[] = "ix";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    numericValueToNumeral(number, result);
+    ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(number_40_translates_to_numeral_xl) {
+    int number = 40;
+    char expected[] = "xl";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    numericValueToNumeral(number, result);
+    ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(number_90_translates_to_numeral_xc) {
+    int number = 90;
+    char expected[] = "xc";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    numericValueToNumeral(number, result);
+    ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(number_400_translates_to_numeral_cd) {
+    int number = 400;
+    char expected[] = "cd";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    numericValueToNumeral(number, result);
+    ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(number_900_translates_to_numeral_cm) {
+    int number = 900;
+    char expected[] = "cm";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    numericValueToNumeral(number, result);
+    ck_assert_str_eq(result, expected);
+}
+END_TEST
+
 Suite * numerals_suite(void) {
     Suite *s;
     TCase *tc_basic;
@@ -132,8 +220,10 @@ Suite * numerals_suite(void) {
     tc_basic = tcase_create("basic");
     tcase_add_test(tc_basic, add_i_and_i_returns_ii);
     tcase_add_test(tc_basic, add_i_and_ii_returns_iii);
+
     tcase_add_test(tc_basic, single_char_translates_to_numeric_value);
     tcase_add_exit_test(tc_basic, invalid_char_causes_program_exit_with_status_1, 1);
+
     tcase_add_test(tc_basic, numeral_ii_translates_to_value_2);
     tcase_add_test(tc_basic, numeral_iii_translates_to_value_3);
     tcase_add_test(tc_basic, numeral_iv_translates_to_value_4);
@@ -146,6 +236,16 @@ Suite * numerals_suite(void) {
     tcase_add_test(tc_basic, numeral_mmxvi_translates_to_value_2016);
     tcase_add_test(tc_basic, numeral_mmdxxv_translates_to_value_2525);
     tcase_add_test(tc_basic, numeral_mmmcmxcix_translates_to_value_3999);
+
+    tcase_add_test(tc_basic, number_2_translates_to_numeral_ii);
+    tcase_add_test(tc_basic, number_3_translates_to_numeral_iii);
+    tcase_add_test(tc_basic, number_4_translates_to_numeral_iv);
+    tcase_add_test(tc_basic, number_9_translates_to_numeral_ix);
+    tcase_add_test(tc_basic, number_40_translates_to_numeral_xl);
+    tcase_add_test(tc_basic, number_90_translates_to_numeral_xc);
+    tcase_add_test(tc_basic, number_400_translates_to_numeral_cd);
+    tcase_add_test(tc_basic, number_900_translates_to_numeral_cm);
+
     suite_add_tcase(s, tc_basic);
 
     return s;
