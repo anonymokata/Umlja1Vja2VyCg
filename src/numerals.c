@@ -4,8 +4,11 @@
 #include "numerals.h"
 
 void add(char *first, char *second, char *buf) {
-    strcpy(buf, first);
-    strcat(buf, second);
+    integerToNumeral(numeralToInteger(first) + numeralToInteger(second), buf);
+}
+
+void subtract(char *first, char *second, char *buf) {
+    integerToNumeral(numeralToInteger(first) - numeralToInteger(second), buf);
 }
 
 int numeralToInteger(char *numeral) {

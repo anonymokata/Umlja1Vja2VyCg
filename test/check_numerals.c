@@ -2,22 +2,74 @@
 #include <check.h>
 #include "../src/numerals.h"
 
-START_TEST(add_i_and_i_returns_ii) {
+START_TEST(add_i_and_i_produces_ii) {
     char first[] = "i";
     char second[] = "i";
     char expected[] = "ii";
-    char result[sizeof(expected)];
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
     add(first, second, result);
 	ck_assert_str_eq(result, expected);
 }
 END_TEST
 
-START_TEST(add_i_and_ii_returns_iii) {
+START_TEST(add_i_and_ii_produces_iii) {
     char first[] = "i";
     char second[] = "ii";
     char expected[] = "iii";
-    char result[sizeof(expected)];
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
     add(first, second, result);
+	ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(add_iv_and_viii_produces_xii) {
+    char first[] = "iv";
+    char second[] = "viii";
+    char expected[] = "xii";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    add(first, second, result);
+	ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(add_xxvii_and_xl_produces_lxvii) {
+    char first[] = "xxvii";
+    char second[] = "xl";
+    char expected[] = "lxvii";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    add(first, second, result);
+	ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(subtract_ix_from_c_produces_xci) {
+    char first[] = "c";
+    char second[] = "ix";
+    char expected[] = "xci";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    subtract(first, second, result);
+	ck_assert_str_eq(result, expected);
+}
+END_TEST
+
+START_TEST(subtract_xix_from_xliii_produces_xxiv) {
+    char first[] = "xliii";
+    char second[] = "xix";
+    char expected[] = "xxiv";
+    size_t expectedSize = sizeof expected;
+    char result[expectedSize];
+    memset(result, 0, expectedSize);
+    subtract(first, second, result);
 	ck_assert_str_eq(result, expected);
 }
 END_TEST
@@ -217,8 +269,13 @@ Suite * numerals_suite(void) {
 
     s = suite_create("numerals");
     tc_basic = tcase_create("basic");
-    tcase_add_test(tc_basic, add_i_and_i_returns_ii);
-    tcase_add_test(tc_basic, add_i_and_ii_returns_iii);
+    tcase_add_test(tc_basic, add_i_and_i_produces_ii);
+    tcase_add_test(tc_basic, add_i_and_ii_produces_iii);
+    tcase_add_test(tc_basic, add_iv_and_viii_produces_xii);
+    tcase_add_test(tc_basic, add_xxvii_and_xl_produces_lxvii);
+
+    tcase_add_test(tc_basic, subtract_ix_from_c_produces_xci);
+    tcase_add_test(tc_basic, subtract_xix_from_xliii_produces_xxiv);
 
     tcase_add_test(tc_basic, single_char_translates_to_numeric_value);
     tcase_add_exit_test(tc_basic, invalid_char_causes_program_exit_with_status_1, 1);
