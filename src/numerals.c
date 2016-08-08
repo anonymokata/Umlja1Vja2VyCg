@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
 #include "numerals.h"
 
 void add(char *first, char *second, char *buf) {
@@ -53,7 +54,8 @@ void integerToNumeral(int number, char *buf) {
 }
 
 int charToInteger(char *c) {
-    switch(*c) {
+    char lnumeral = tolower(*c);
+    switch(lnumeral) {
         case 'i':
             return 1;
         case 'v':

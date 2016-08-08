@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <check.h>
+#include <ctype.h>
 #include "../src/numerals.h"
 
 START_TEST(add_i_and_i_produces_ii) {
@@ -80,6 +81,8 @@ START_TEST(single_char_translates_to_numeric_value) {
     int i;
     for (i = 0; i < strlen(numerals); i++) {
         ck_assert_int_eq(charToInteger(&numerals[i]), expected[i]);
+        char unumeral = toupper(numerals[i]);
+        ck_assert_int_eq(charToInteger(&unumeral), expected[i]);
     }
 }
 END_TEST
